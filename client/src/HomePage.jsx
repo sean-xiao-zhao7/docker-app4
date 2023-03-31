@@ -14,7 +14,7 @@ function HomePage() {
     useEffect(() => {
         fetchValues();
         fetchSeenIndexes();
-    }, [index]);
+    }, []);
 
     const fetchValues = async () => {
         try {
@@ -34,6 +34,29 @@ function HomePage() {
         }
     };
 
+    const submitIndexHandler = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post("/api/values/new", {
+                index: index,
+            });
+            setIndex("");
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    let valuesElement;
+    if (values !== {}) {
+        for (let key in values) {
+            valuesElement += (
+                <p>
+                    Index {key} - {values[key]}
+                </p>
+            );
+        }
+    }
+
     return (
         <div className="App">
             <header className="App-header">
@@ -42,23 +65,28 @@ function HomePage() {
                 <div>
                     <Link to="/results">Results</Link>
                 </div>
-                <form>
-                    <label for="index">Enter index:</label>
+                <form onSubmit={submitIndexHandler}>
+                    <label htmlFor="index">Enter index:</label>
                     <input
                         type="text"
                         name="index"
                         id="index"
                         placeholder="Index"
+                        onChange={setIndex}
                     />
                     <button>Go</button>
                 </form>
                 <div>
                     <h2>Indexes I have seen</h2>
-                    <div></div>
+                    <div>
+                        {seenIndexes.map(({ number }) => {
+                            return <span>{number}</span>;
+                        })}
+                    </div>
                 </div>
                 <div>
                     <h2>Calculated values</h2>
-                    <div></div>
+                    <div>{valuesElement}</div>
                 </div>
             </header>
         </div>
