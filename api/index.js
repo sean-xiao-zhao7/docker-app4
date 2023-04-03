@@ -50,7 +50,7 @@ app.post("/values/new", async (req, res) => {
     if (+index > 40) {
         return res.status(422).send("Index larger than 40.");
     } else {
-        redisClient.hset("values", index, "Placeholder");
+        redisClient.hset("values", index, "No values.");
         redisPublisher.publish("insert", index);
         pgClient.query("INSERT INTO values(number) VALUES($1)", [index]);
         return res.send("Calculating Fibonacci.");

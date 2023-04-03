@@ -19,6 +19,7 @@ function HomePage() {
     const fetchValues = async () => {
         try {
             const values = await axios.get("/api/values/current");
+            console.log(values.data);
             setValues(values.data);
         } catch (err) {
             console.log(err);
@@ -74,7 +75,7 @@ function HomePage() {
                         placeholder="Index"
                         onChange={setIndex}
                     />
-                    <button>Go</button>
+                    <button type="submit">Go</button>
                 </form>
                 <div>
                     <h2>Indexes I have seen</h2>
