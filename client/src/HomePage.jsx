@@ -46,17 +46,6 @@ function HomePage() {
         }
     };
 
-    let valuesElement;
-    if (values !== {}) {
-        for (let key in values) {
-            valuesElement += (
-                <p>
-                    Index {key} - {values[key]}
-                </p>
-            );
-        }
-    }
-
     return (
         <div className="App">
             <header className="App-header">
@@ -82,13 +71,27 @@ function HomePage() {
                     <h2>Indexes I have seen</h2>
                     <div>
                         {seenIndexes.map(({ number }) => {
-                            return <span>{number}</span>;
+                            return <span key={number}>{number}</span>;
                         })}
                     </div>
                 </div>
                 <div>
                     <h2>Calculated values</h2>
-                    <div>{valuesElement}</div>
+                    <div>
+                        {(() => {
+                            if (values !== {}) {
+                                for (let key in values) {
+                                    if (key) {
+                                        return (
+                                            <p key={key}>
+                                                Index {key} - {values[key]}
+                                            </p>
+                                        );
+                                    }
+                                }
+                            }
+                        })()}
+                    </div>
                 </div>
             </header>
         </div>
