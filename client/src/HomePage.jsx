@@ -19,7 +19,6 @@ function HomePage() {
     const fetchValues = async () => {
         try {
             const values = await axios.get("/api/values/current");
-            console.log(values.data);
             setValues(values.data);
         } catch (err) {
             console.log(err);
@@ -73,7 +72,9 @@ function HomePage() {
                         name="index"
                         id="index"
                         placeholder="Index"
-                        onChange={setIndex}
+                        onChange={(e) => {
+                            setIndex(e.target.value);
+                        }}
                     />
                     <button type="submit">Go</button>
                 </form>
