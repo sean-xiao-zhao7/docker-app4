@@ -8,7 +8,7 @@ import "./App.css";
 
 function HomePage() {
     const [seenIndexes, setSeenIndexes] = useState([]);
-    const [values, setValues] = useState({});
+    const [values, setValues] = useState([]);
     const [index, setIndex] = useState("");
 
     useEffect(() => {
@@ -18,8 +18,14 @@ function HomePage() {
 
     const fetchValues = async () => {
         try {
-            const values = await axios.get("/api/values/current");
-            setValues(values.data);
+            const valuesResult = await axios.get("/api/values/current");
+            let valuesResultArray = [];
+            for (const key in valuesResult.data) {
+                if (key) {
+                    valuesResultArray.push([key, valuesResult.data[key]]);
+                }
+            }
+            setValues(valuesResultArray);
         } catch (err) {
             console.log(err);
         }
@@ -71,26 +77,20 @@ function HomePage() {
                     <h2>Indexes I have seen</h2>
                     <div>
                         {seenIndexes.map(({ number }) => {
-                            return <span key={number}>{number}</span>;
+                            return <p key={number}>{number}</p>;
                         })}
                     </div>
                 </div>
                 <div>
                     <h2>Calculated values</h2>
                     <div>
-                        {(() => {
-                            if (values !== {}) {
-                                for (let key in values) {
-                                    if (key) {
-                                        return (
-                                            <p key={key}>
-                                                Index {key} - {values[key]}
-                                            </p>
-                                        );
-                                    }
-                                }
-                            }
-                        })()}
+                        {values.map((value, index) => {
+                            return (
+                                <p key={index}>
+                                    Key: {value[0]}, Val: {value[1]}
+                                </p>
+                            );
+                        })}
                     </div>
                 </div>
             </header>
