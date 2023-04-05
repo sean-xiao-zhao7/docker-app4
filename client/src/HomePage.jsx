@@ -23,7 +23,7 @@ function HomePage() {
             const valuesResult = await axios.get("/api/values/current");
             let valuesResultArray = [];
             for (const key in valuesResult.data) {
-                if (key) {
+                if (key && key !== "undefined") {
                     valuesResultArray.push([key, valuesResult.data[key]]);
                 }
             }
