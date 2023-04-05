@@ -10,11 +10,13 @@ function HomePage() {
     const [seenIndexes, setSeenIndexes] = useState([]);
     const [values, setValues] = useState([]);
     const [index, setIndex] = useState("");
+    const [fetchNewValues, setFetchNewValues] = useState(false);
 
     useEffect(() => {
         fetchValues();
         fetchSeenIndexes();
-    }, []);
+        setFetchNewValues(false);
+    }, [fetchNewValues]);
 
     const fetchValues = async () => {
         try {
@@ -47,6 +49,7 @@ function HomePage() {
                 index: index,
             });
             setIndex("");
+            setFetchNewValues(true);
         } catch (err) {
             console.log(err);
         }
