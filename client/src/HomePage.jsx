@@ -59,7 +59,7 @@ function HomePage() {
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
-                <h1>Fibonacci App</h1>
+                <h1>Fibonacci App New</h1>
                 <div>
                     <Link to="/results">Results</Link>
                 </div>
