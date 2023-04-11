@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: client-deployemnt
+spec:
+    repicas: 3
+    selector:
+        matchLabels:
+            component: client
+    template:
+        metadata:
+            label:
+                component: client
+        spec:
+            containers:
+                - name: client
+                  image: jeanpaulxiao2/app4_client
+                  ports:
+                      - containerPort: 3000
