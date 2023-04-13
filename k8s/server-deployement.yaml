@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: client-deployemnt
+    name: server-deployemnt
 spec:
     replicas: 3
     selector:
         matchLabels:
-            component: client
+            component: server
     template:
         metadata:
             labels:
-                component: client
+                component: server
         spec:
             containers:
-                - name: client
-                  image: jeanpaulxiao2/app4_client
+                - name: server
+                  image: jeanpaulxiao2/app4_server
                   ports:
                       - containerPort: 3000
