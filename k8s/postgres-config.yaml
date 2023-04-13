@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: postgres-cluster-ip-service
+spec:
+    type: ClusterIP
+    selector:
+        component: postgres
+    ports:
+        - port: 3000
+          targetPort: 5432
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: postgres-deployemnt
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            component: postgres
+    template:
+        metadata:
+            labels:
+                component: postgres
+        spec:
+            containers:
+                - name: postgres
+                  image: "postgres:latest"
+                  ports:
+                      - containerPort: 5432
