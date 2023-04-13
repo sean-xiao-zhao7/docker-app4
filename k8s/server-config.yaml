@@ -29,3 +29,16 @@ spec:
                   image: jeanpaulxiao2/app4_server
                   ports:
                       - containerPort: 5000
+                  env:
+                      - name: REDIS_HOST
+                        value: redis-cluster-ip-service
+                      - name: REDIS_PORT
+                        value: "6379"
+                      - name: PG_USER
+                        value: "postgres"
+                      - name: PG_PASSWORD
+                        value: "postgres_password"
+                      - name: PG_HOST
+                        value: postgres-cluster-ip-service
+                      - name: PG_DATABASE
+                        value: "postgres"

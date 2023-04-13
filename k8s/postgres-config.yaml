@@ -51,15 +51,3 @@ spec:
                       - name: postgres-storage
                         mountPath: /var/lib/postgresql/data
                         subPath: postgres
-#   - name: REDIS_HOST
-#     value: "redis"
-#   - name: REDIS_PORT
-#     value: "6379"
-#   - name: PG_USER
-#     value: "postgres"
-#   - name: PG_PASSWORD
-#     value: "postgres_password"
-#   - name: PG_HOST
-#     value: "postgres"
-#   - name: PG_DATABASE
-#     value: "postgres"
