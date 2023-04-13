@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: worker-deployemnt
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            component: worker
+    template:
+        metadata:
+            labels:
+                component: worker
+        spec:
+            containers:
+                - name: worker
+                  image: jeanpaulxiao2/app4_worker
+                  ports:
+                      - containerPort: 3000
