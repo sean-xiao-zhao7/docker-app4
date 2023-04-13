@@ -16,4 +16,4 @@ spec:
                 - name: server
                   image: jeanpaulxiao2/app4_server
                   ports:
-                      - containerPort: 3000
+                      - containerPort: 5000
