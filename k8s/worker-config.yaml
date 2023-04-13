@@ -15,5 +15,10 @@ spec:
             containers:
                 - name: worker
                   image: jeanpaulxiao2/app4_worker
+                  env:
+                      - name: REDIS_HOST
+                        value: redis-cluster-ip-service
+                      - name: REDIS_PORT
+                        value: "6379"
                   ports:
                       - containerPort: 3000
